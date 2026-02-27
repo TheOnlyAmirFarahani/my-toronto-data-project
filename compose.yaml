@@ -1,0 +1,8 @@
+services:
+  training:
+    build: 
+      context: .
+      dockerfile: ./training/Dockerfile
+    container_name: training
+    volumes:
+      - ./output:/app/output
