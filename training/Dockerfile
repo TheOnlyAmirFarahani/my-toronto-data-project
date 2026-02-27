@@ -14,12 +14,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN apt-get update && \
     apt-get install -y wget && \
     mkdir -p /app/data && \
-    wget -O /app/data/Assault_Open_Data.csv \
+    wget -O /app/data/assault_data.csv \
     "https://services.arcgis.com/S9th0jAJ7bqgIRjw/arcgis/rest/services/Assault_Open_Data/FeatureServer/replicafilescache/Assault_Open_Data_8153726331132086508.csv" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY data/ /app/data
 COPY training/ /app
 
 CMD ["python", "training.py"]
