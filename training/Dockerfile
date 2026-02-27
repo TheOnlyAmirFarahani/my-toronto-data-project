@@ -10,6 +10,15 @@ WORKDIR /app
 COPY training/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install wget and download the assault data CSV
+RUN apt-get update && \
+    apt-get install -y wget && \
+    mkdir -p /app/data && \
+    wget -O /app/data/Assault_Open_Data.csv \
+    "https://services.arcgis.com/S9th0jAJ7bqgIRjw/arcgis/rest/services/Assault_Open_Data/FeatureServer/replicafilescache/Assault_Open_Data_8153726331132086508.csv" && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY data/ /app/data
 COPY training/ /app
 
