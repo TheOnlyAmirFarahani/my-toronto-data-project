@@ -85,6 +85,7 @@ ax4.set_xlabel("Number of Incidents")
 ax4.grid(axis="x", alpha=0.3)
 
 year_counts = df.groupby("OCC_YEAR").size()
+year_counts = year_counts[year_counts.index >= 2014]
 ax5.plot(year_counts.index, year_counts.values, color="#2196F3", marker="o", linewidth=2)
 ax5.fill_between(year_counts.index, year_counts.values, alpha=0.15, color="#2196F3")
 ax5.set_title("Incidents Per Year")
@@ -143,7 +144,7 @@ ax.legend()
 ax.grid(axis="y", alpha=0.3)
 plt.tight_layout()
 plt.savefig("output/chart_2_yearly_trend.png", dpi=150, bbox_inches="tight")
-plt.close()
+plt.close()  
 
 # Weapon rate
 
